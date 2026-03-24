@@ -38,6 +38,8 @@
             });
             document.getElementById('cartBtn').addEventListener('click', function () { render(); document.getElementById('cartModal').classList.add('active'); });
             ['closeBtn', 'cancelBtn'].forEach(function (id) { document.getElementById(id).addEventListener('click', function () { document.getElementById('cartModal').classList.remove('active'); }); });
+            var clrBtn = document.getElementById('clearBtn');
+            if (clrBtn) { clrBtn.addEventListener('click', function () { cart = []; save(); render(); }); }
             document.getElementById('cartModal').addEventListener('click', function (e) { if (e.target === this) this.classList.remove('active'); });
             document.getElementById('addr').addEventListener('input', function () { if (this.value) { this.classList.remove('error'); document.getElementById('addrWarn').style.display = 'none'; } });
             document.getElementById('checkoutBtn').addEventListener('click', function () {
