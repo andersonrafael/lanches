@@ -55,7 +55,10 @@
                 var orderNumber = String(oData.n).padStart(3, '0');
                 var msg = '*Pedido BurguerZinha #' + orderNumber + '*\n\n';
                 cart.forEach(function (i) { msg += i.n + ' x' + i.q + ' - R$ ' + (i.p * i.q).toFixed(2) + '\n'; });
+                var pm = document.getElementById('payMethod');
+                var payVal = pm ? pm.value : '';
                 msg += '\nTotal: ' + total().toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+                if (payVal) { msg += '\nForma de Pagto: ' + payVal; }
                 msg += '\n\nEndereco: ' + ai.value.trim();
                 window.open('https://wa.me/' + PHONE + '?text=' + encodeURIComponent(msg), '_blank');
                 cart = []; save(); render(); document.getElementById('cartModal').classList.remove('active'); ai.value = '';
