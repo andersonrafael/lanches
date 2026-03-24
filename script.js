@@ -57,11 +57,14 @@
                 cart.forEach(function (i) { msg += i.n + ' x' + i.q + ' - R$ ' + (i.p * i.q).toFixed(2) + '\n'; });
                 var pm = document.getElementById('payMethod');
                 var payVal = pm ? pm.value : '';
+                var obsEl = document.getElementById('obs');
+                var obsVal = obsEl ? obsEl.value.trim() : '';
                 msg += '\nTotal: ' + total().toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
                 if (payVal) { msg += '\nForma de Pagto: ' + payVal; }
+                if (obsVal) { msg += '\nObservacoes: ' + obsVal; }
                 msg += '\n\nEndereco: ' + ai.value.trim();
                 window.open('https://wa.me/' + PHONE + '?text=' + encodeURIComponent(msg), '_blank');
-                cart = []; save(); render(); document.getElementById('cartModal').classList.remove('active'); ai.value = '';
+                cart = []; save(); render(); document.getElementById('cartModal').classList.remove('active'); ai.value = ''; if(obsEl) obsEl.value = '';
             });
             badge();
         })();
